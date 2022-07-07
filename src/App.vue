@@ -1,5 +1,5 @@
 <template>
-  <Home></Home>
+  <Home saludo="Hola" dia="23"></Home>
 </template>
 
 <script>
