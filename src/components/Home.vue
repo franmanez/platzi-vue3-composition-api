@@ -7,11 +7,12 @@
   <div>{{ firstName }} {{ lastName }}</div>
   <div>{{ fullName }} </div>
   <h2>{{ saludoDia }} </h2>
+  <h3>nombre de usuario (provide-inject): {{ username }}</h3>
 </template>
 
 <script>
 
-import { ref, reactive, onMounted, watch, computed, toRefs } from 'vue'
+import { ref, reactive, onMounted, watch, computed, toRefs, inject } from 'vue'
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -42,6 +43,9 @@ export default {
       return `Mi saludo es: ${saludo.value}, hoy es el dia ${dia.value}`
     })
 
+    const username = inject('username')
+    console.log(username)
+
     // el primer parametro se pone en forma de función si se usa REACTIVE
     // el primer parametro se pone en forma de "parámetro normal" si se usa REF
     watch(() => obj.count, (newValue, oldValue) => {
@@ -59,7 +63,8 @@ export default {
       firstName,
       lastName,
       fullName,
-      saludoDia
+      saludoDia,
+      username
     }
   }
 }
