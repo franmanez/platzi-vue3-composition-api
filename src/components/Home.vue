@@ -8,6 +8,8 @@
   <div>{{ fullName }} </div>
   <h2>{{ saludoDia }} </h2>
   <h3>nombre de usuario (provide-inject): {{ username }}</h3>
+  <h3>template REFs</h3>
+  <button ref="btn">Click!</button>
 </template>
 
 <script>
@@ -43,13 +45,22 @@ export default {
       return `Mi saludo es: ${saludo.value}, hoy es el dia ${dia.value}`
     })
 
+    // provide inject
     const username = inject('username')
     console.log(username)
+
+    // template ref
+    const btn = ref(null)
+    console.log(btn.value)
 
     // el primer parametro se pone en forma de función si se usa REACTIVE
     // el primer parametro se pone en forma de "parámetro normal" si se usa REF
     watch(() => obj.count, (newValue, oldValue) => {
       console.log(newValue, oldValue)
+    })
+
+    watch(btn, (valor) => {
+      console.log(valor)
     })
 
     onMounted(() => {
@@ -64,7 +75,8 @@ export default {
       lastName,
       fullName,
       saludoDia,
-      username
+      username,
+      btn
     }
   }
 }
